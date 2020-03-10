@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C/C++,COURSERA学习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="COURSERA上的北京大学《C++程序设计》第四周的笔记。">
+<meta name="keywords" content="C&#x2F;C++,COURSERA学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="COURSERA &lt;C++程序设计&gt;——Week4">
+<meta property="og:url" content="ematrix163.xyz/2018/06/24/C++/week4/index.html">
+<meta property="og:site_name" content="Ematrix163">
+<meta property="og:description" content="COURSERA上的北京大学《C++程序设计》第四周的笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.screenshot.net/33wozhk">
+<meta property="og:image" content="https://i.screenshot.net/zodkgs4">
+<meta property="og:updated_time" content="2018-06-24T13:21:03.623Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="COURSERA &lt;C++程序设计&gt;——Week4">
+<meta name="twitter:description" content="COURSERA上的北京大学《C++程序设计》第四周的笔记。">
+<meta name="twitter:image" content="https://i.screenshot.net/33wozhk">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="ematrix163.xyz/2018/06/24/C++/week4/"/>
+
+
+
+
+
+  <title>COURSERA <C++程序设计>——Week4 | Ematrix163</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-121318790-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ematrix163</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="ematrix163.xyz/2018/06/24/C++/week4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ematrix163">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.screenshot.net/qqkg0b8">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ematrix163">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">COURSERA <C++程序设计>——Week4</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T10:13:57+01:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,962
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>COURSERA上的北京大学《C++程序设计》第四周的笔记。<br><a id="more"></a></p>
+<h1 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h1><h2 id="运算符重载为普通函数"><a href="#运算符重载为普通函数" class="headerlink" title="运算符重载为普通函数"></a>运算符重载为普通函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Complex(<span class="keyword">double</span> r = <span class="number">0.0</span>, <span class="keyword">double</span> i = <span class="number">0.0</span>) &#123;</span><br><span class="line">            real = r;</span><br><span class="line">            imaginary = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> real;</span><br><span class="line">        <span class="keyword">double</span> imaginary;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Complex <span class="keyword">operator</span>+ (<span class="keyword">const</span> Complex &amp; a, <span class="keyword">const</span> Complex &amp; b) &#123;</span><br><span class="line">    <span class="keyword">return</span> Complex(a.real + b.real, a.imaginary + b.imaginary);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Complex a(1, 2), b(2, 3), c;</span><br><span class="line">c = a + b; <span class="comment">//相当于operator+(a,b), 参数个数为运算符目数</span></span><br></pre></td></tr></table></figure>
+<h2 id="运算符重载为成员函数"><a href="#运算符重载为成员函数" class="headerlink" title="运算符重载为成员函数"></a>运算符重载为成员函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Complex(<span class="keyword">double</span> r = <span class="number">0.0</span>, <span class="keyword">double</span> m = <span class="number">0.0</span>):</span><br><span class="line">            real(r), imaginary(m) &#123;&#125;</span><br><span class="line">        Complex <span class="keyword">operator</span>+ (<span class="keyword">const</span> Complex &amp;);</span><br><span class="line">        Complex <span class="keyword">operator</span>- (<span class="keyword">const</span> Complex &amp;);</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">double</span> real;</span><br><span class="line">        <span class="keyword">double</span> imaginary;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//重载函数为成员函数时,参数个数为运算符目数减一</span></span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp; operand2) &#123;</span><br><span class="line">    <span class="keyword">return</span> Complex(real + operand2.real, imaginary + operand2.imaginary);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>-(<span class="keyword">const</span> Complex &amp; operand2) &#123;</span><br><span class="line">    <span class="keyword">return</span> Complex(real - operand2.real, imaginary - operand2.imaginary);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Complex x, y(<span class="number">4.3</span>, <span class="number">8.2</span>), z(<span class="number">3.3</span>, <span class="number">1.1</span>);</span><br><span class="line">    x = y + z; <span class="comment">//相当于 x = y.operatpr+(z);</span></span><br><span class="line">    x = y - z; <span class="comment">//相当于 x = y.operatpr-(z);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="赋值运算符’-’重载"><a href="#赋值运算符’-’重载" class="headerlink" title="赋值运算符’=’重载"></a>赋值运算符’=’重载</h2><p>赋值运算符两边的类型可以不匹配</p>
+<ul>
+<li>把一个int类型变量赋值给一个Complex对象</li>
+<li>把一个char *类型的字符串赋值给一个字符串对象<br>赋值运算符”=”只能重载为<strong>成员函数</strong></li>
+</ul>
+<p>例子: 编写一个长度可变的字符串类String</p>
+<ul>
+<li>包含一个char * 类型的成员变量, 指向动态分配的存储空间</li>
+<li>该存储空间用于存放’\0’结尾的字符串<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span> &#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">char</span> * str;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        String(): str(<span class="literal">NULL</span>) &#123;&#125; <span class="comment">//构造函数,初始化str为NULL,初始化成员列表</span></span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">c_str</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> str;&#125; <span class="comment">//在编写 char * p = s.c_str();时, 左边为常引用,右边不是常引用,编译会报错</span></span><br><span class="line">        <span class="keyword">char</span> * <span class="keyword">operator</span>= (<span class="keyword">const</span> <span class="keyword">char</span> * s);</span><br><span class="line">        ~String();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> * String::<span class="keyword">operator</span> = (<span class="keyword">const</span> <span class="keyword">char</span> *s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str) <span class="keyword">delete</span>[];</span><br><span class="line">    <span class="keyword">if</span> (s) &#123;</span><br><span class="line">        str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s) + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">strcpy</span>(str, s);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">String::~String() &#123;</span><br><span class="line">    <span class="keyword">if</span>(str) <span class="keyword">delete</span> []str;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String s;</span><br><span class="line">    s = <span class="string">"Good Luck"</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s.c_str() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//String s2 = "hello!"; 这句话会出错,因为这个会调用char * 作为参数的构造函数(是初始化语句,不是赋值语句)</span></span><br><span class="line">    s = <span class="string">"Shenzhou 8!"</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s.c_str() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="重载赋值运算符的意义-浅复制和深复制"><a href="#重载赋值运算符的意义-浅复制和深复制" class="headerlink" title="重载赋值运算符的意义 - 浅复制和深复制"></a>重载赋值运算符的意义 - 浅复制和深复制</h2><h3 id="浅复制-浅拷贝"><a href="#浅复制-浅拷贝" class="headerlink" title="浅复制/浅拷贝"></a>浅复制/浅拷贝</h3><ul>
+<li>s1 = s2;</li>
+<li>浅复制/浅拷贝 (执行逐个字节的复制工作,存在一些问题, 如:)<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MyString s1, s2;</span><br><span class="line">s1 = <span class="string">"this"</span>;</span><br><span class="line">s2 = <span class="string">"that"</span>;</span><br><span class="line">s1 = s2; <span class="comment">//即s1.str = s2.str</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.screenshot.net/33wozhk" alt="Image"><br>引发的两个问题:</p>
+<ol>
+<li><code>s1</code>与<code>s2</code>同时指向同一块内存空间,之前<code>s1</code>指向的空间找不到了,内存泄漏;</li>
+<li><code>s1</code>与<code>s2</code>同时指向同一块内存空间,<code>s1</code>与<code>s2</code>消亡的时候会<code>delete</code>‘that’两次,导致问题.</li>
+</ol>
+<h3 id="深复制-深拷贝"><a href="#深复制-深拷贝" class="headerlink" title="深复制/深拷贝"></a>深复制/深拷贝</h3><ul>
+<li>将一个对象中的指针变量指向的内容复制到另一个对象中指针成员对象指向的地方</li>
+</ul>
+<p>实现深复制: 在<code>class MyString</code>里添加成员函数:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String &amp; <span class="keyword">operator</span> =  (<span class="keyword">const</span> String &amp;s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str) <span class="keyword">delete</span> [] str;</span><br><span class="line">    str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s.str) + <span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(str, s.str);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是,这样的写法是有点小问题的,当写下<code>s=s</code>这条语句时, <code>if (str) delete [] str;</code>会生效,导致后面赋值失败,正确写法如下:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String &amp; String::<span class="keyword">operator</span> = (<span class="keyword">const</span> String &amp; s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str == s.str) <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (str) <span class="keyword">delete</span> [] str;</span><br><span class="line">    <span class="keyword">if</span> (s.str) &#123; <span class="comment">//s.str不为NULL才会执行拷贝</span></span><br><span class="line">        str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s.str) + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">strcpy</span>(str, s.str);</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="对operator-返回值类型的讨论"><a href="#对operator-返回值类型的讨论" class="headerlink" title="对operator=返回值类型的讨论"></a>对<code>operator=</code>返回值类型的讨论</h2><ul>
+<li><code>void</code>可以吗?<br>不行, 考虑:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = b = c; <span class="comment">//等价于a.operator=(b.operator=(c));</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果<code>b.operator=(c)</code>返回值是void,下一步不再会有相应的参数</p>
+<ul>
+<li><code>String</code>可不可以?<br>运算符重载时,好的风格 - 尽量保留运算符原本的特性<br>考虑<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a=b)=c; <span class="comment">//会修改a的值,(a.operator=(b)).operator=(c));</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当位<code>String</code>类编写复制构造函数的时候,会面临和’=’同样的问题(浅拷贝),用同样的方法处理:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String::String(String &amp;s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s.str) &#123;</span><br><span class="line">        str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s.str) + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">strcpy</span>(str, s.str);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="运算符重载为友元函数"><a href="#运算符重载为友元函数" class="headerlink" title="运算符重载为友元函数"></a>运算符重载为友元函数</h2><p>通常情况下,将运算符重载为类的成员函数</p>
+<p>重载为友元函数的情况：</p>
+<ul>
+<li>成员函数不能满足使用要求</li>
+<li>普通函数，不能访问类的私有成员<br>例如：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">        <span class="keyword">double</span> real, imag;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Complex(<span class="keyword">double</span> r, <span class="keyword">double</span> i):real(r), imag(i) &#123;&#125;;</span><br><span class="line">        Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r);</span><br><span class="line">        <span class="keyword">friend</span> Complex <span class="keyword">operator</span> + (<span class="keyword">double</span> r, <span class="keyword">const</span> Complex &amp; c);</span><br><span class="line">        <span class="comment">//声明为友元函数是为了下面的+重载普通函数能访问私有成员</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>+(<span class="keyword">double</span> r)&#123;</span><br><span class="line">    <span class="keyword">return</span> Complex(real + r, imag);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这个代码，实现<code>c = c + 5;</code>是没有问题的，但是想要实现<code>c = 5 + c;</code>时，出错。因次需要将 +重载为普通函数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r, <span class="keyword">const</span> Complex &amp; c) &#123;</span><br><span class="line">    <span class="keyword">return</span> Complex(c.real + r, c.image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是类外面的函数是不能访问类的私有成员的，因次需要声明位友元函数。</p>
+<h2 id="运算符重载-可变长整形数组"><a href="#运算符重载-可变长整形数组" class="headerlink" title="运算符重载-可变长整形数组"></a>运算符重载-可变长整形数组</h2><p>要编写可变长整形数组类，使之能如下使用：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    CArray a;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i)</span><br><span class="line">        a.push_back(i);</span><br><span class="line">    CArray a2, a3;</span><br><span class="line">    a2 = a; <span class="comment">//期望a2和a一样，这个赋值号需要重载</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length(); ++i)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; a2[i] &lt;&lt; <span class="string">" "</span>; <span class="comment">//输出 0 1 2 3 4 , 需要重载[]</span></span><br><span class="line">    a2 = a3;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a2.length(); ++i)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; a2[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    a[<span class="number">3</span>] = <span class="number">100</span>; <span class="comment">//输出 0 1 2 100 4</span></span><br><span class="line">    <span class="function">CArray <span class="title">a4</span><span class="params">(a)</span></span>; <span class="comment">//复制构造函数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a4.length(); ++i)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; a4[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">Class CAarry &#123;</span><br><span class="line">        <span class="keyword">int</span> size; <span class="comment">//数组元素个数</span></span><br><span class="line">        <span class="keyword">int</span> *ptr; <span class="comment">//指向动态分配的数组</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        CArray(<span class="keyword">int</span> s = <span class="number">0</span>); <span class="comment">//s代表数组元素的个数</span></span><br><span class="line">        CArray(CArray &amp; a);</span><br><span class="line">        ~CArray();</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">int</span> v)</span></span>; <span class="comment">//用于在数组末尾添加一个元素V</span></span><br><span class="line">        CArray &amp; <span class="keyword">operator</span> = (<span class="keyword">const</span> CArray &amp; a); <span class="comment">//用于数组对象间的赋值</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">lenght</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> size;&#125; <span class="comment">//返回数组对象的个数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> &amp; CArray::<span class="keyword">operator</span>[](<span class="keyword">int</span> i) <span class="comment">//返回值为int是不行的！</span></span><br><span class="line">        <span class="comment">//因为如果为int的话，实现 n = a[i]可以，但是实现a[i] = 4不行。因为函数的返回值不是引用的话，是不能写在=号左边的</span></span><br><span class="line">        &#123; <span class="comment">//双目运算符，一个操作数在中括号外面，一个在里面</span></span><br><span class="line">            <span class="keyword">return</span> ptr[i];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造函数</span></span><br><span class="line">CArray::CArray(<span class="keyword">int</span> s):size(s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="number">0</span>)</span><br><span class="line">        ptr = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="keyword">int</span>[s];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//复制构造函数</span></span><br><span class="line"><span class="comment">//如果不自己写复制构造函数，CArray a2(a1);    a2 和a1会指向同一个内存区域。 因为系统的构造函数就是复制成员变量，即a1.ptr = a2.ptr，如下图</span></span><br><span class="line">CArray::CArray(CArray &amp; a) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!a.ptr) &#123;</span><br><span class="line">        ptr = <span class="literal">NULL</span>;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ptr = <span class="keyword">new</span> <span class="keyword">int</span>[a.size];</span><br><span class="line">    <span class="built_in">memcpy</span>(ptr, a.ptr, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * a.size); <span class="comment">//拷贝a.ptr指向的内容到ptr中去</span></span><br><span class="line">    size = a.size();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//析构函数</span></span><br><span class="line">CArray::~CArray() &#123;</span><br><span class="line">    <span class="keyword">if</span> (ptr) <span class="keyword">delete</span> []ptr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CArray &amp; CArray::<span class="keyword">operator</span>=(<span class="keyword">const</span> CArray &amp; a) &#123;</span><br><span class="line">    <span class="comment">//这边是引用是因为c++中赋值本来就是引用</span></span><br><span class="line">    <span class="comment">//赋值号的作用是使"="左边对象里存放的数组，大小和内容都和右边的对象一样</span></span><br><span class="line">    <span class="keyword">if</span> (ptr = a.ptr) <span class="comment">//防止a=a这样的赋值导致出错</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (a.ptr == <span class="literal">NULL</span>) &#123; <span class="comment">//如果a数组里面是空的</span></span><br><span class="line">        <span class="keyword">if</span> (ptr) <span class="keyword">delete</span>[] ptr;</span><br><span class="line">        ptr = <span class="literal">NULL</span>;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (size &lt; a.size) &#123; <span class="comment">//如果原有空间够大，就不用分配新的空间</span></span><br><span class="line">        <span class="keyword">if</span> (ptr)</span><br><span class="line">            <span class="keyword">delete</span> []ptr;</span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="keyword">int</span>[a.size];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memcpy</span>(ptrm a.ptr, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * a.size);</span><br><span class="line">    size = a.size;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个示例其实开销比较大，效率低。因为每次都要全部重新分配存储空间。</span></span><br><span class="line"><span class="comment">//可以的话其实可以设定一个固定值，如32，32以内的时候都不需要重新分配存储空间。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//vector就是采用上述方法实现的。</span></span><br><span class="line"><span class="keyword">void</span> CArray::push_back(<span class="keyword">int</span> v) &#123;</span><br><span class="line">    <span class="comment">//在数组尾添加一个元素</span></span><br><span class="line">    <span class="keyword">if</span> (ptr) &#123;</span><br><span class="line">        <span class="keyword">int</span> * tmpPtr = <span class="keyword">new</span> <span class="keyword">int</span>[size + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">memcpy</span>(tmpPtr, ptr, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * size);</span><br><span class="line">        <span class="keyword">delete</span> []ptr;</span><br><span class="line">        ptr = tmpPtr;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="comment">//数组本来是空的</span></span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1</span>];</span><br><span class="line">    ptr[size++] = v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.screenshot.net/zodkgs4" alt="Image"></p>
+<h1 id="流插入运算符和流提取运算符的重载"><a href="#流插入运算符和流提取运算符的重载" class="headerlink" title="流插入运算符和流提取运算符的重载"></a>流插入运算符和流提取运算符的重载</h1><ul>
+<li><code>cout</code>是在<code>iostream</code>中定义的，<code>ostream</code>类的对象</li>
+<li>“<code>&lt;&lt;</code>”能用在<code>cout</code>上是因为，在<code>iostream</code>里对”<code>&lt;&lt;</code>“进行了重载</li>
+</ul>
+<p><code>cout &lt;&lt; 5</code>; 即 <code>cout.operator&lt;&lt;(5)</code>；<br><code>cout &lt;&lt; &quot;this&quot;;</code> 即 <code>cout.operator&lt;&lt;(&quot;this&quot;);</code></p>
+<p>问，如何重载才能使得 <code>cout &lt;&lt; 5 &lt;&lt; &quot;this&quot;</code> 成立？</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>.<span class="keyword">operator</span>&lt;&lt;(<span class="number">5</span>).<span class="keyword">operator</span>&lt;&lt;(<span class="string">"this"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CStudent</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>: <span class="keyword">int</span> nAge;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    CStudent s;</span><br><span class="line">    s.nAge = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="string">"hello"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp; o, <span class="keyword">const</span> CStudent &amp; s) &#123; <span class="comment">//引用是为了节省内存开销，不然系统要执行复制构造函数</span></span><br><span class="line">    o &lt;&lt; s.nAge;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设c是<code>Complex</code>复数类的对象，现在希望写 “<code>cout &lt;&lt; c;</code>”， 就能以“<code>a+bi</code>”的形式输出c的值，写”<code>cin &gt;&gt; c;</code>“， 就能从键盘接受”<code>a+bi</code>“形式的输入</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Complex c;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; c &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="string">","</span> &lt;&lt; n;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line">        <span class="keyword">double</span> real, imag;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Complex(<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>):real(r), imag(i) &#123;&#125;;</span><br><span class="line">        <span class="keyword">friend</span> ostream &amp; <span class="keyword">operator</span> &lt;&lt; (ostream &amp; os, <span class="keyword">const</span> Complex &amp; c);</span><br><span class="line">        <span class="keyword">friend</span> istream &amp; <span class="keyword">operator</span> &gt;&gt; (istream &amp; is, Complex &amp; c);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp; os, <span class="keyword">const</span> Complex &amp; c) &#123;</span><br><span class="line">    os &lt;&lt; c.real &lt;&lt; <span class="string">"+"</span> &lt;&lt; c.imag &lt;&lt; <span class="string">"i"</span>;</span><br><span class="line">    <span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isstream &amp; <span class="keyword">operator</span> &gt;&gt; (istream &amp; is, Complex &amp; c) &#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    is &gt;&gt; s; <span class="comment">//将“a+bi”作为字符串读入，“a+bi”中间不能有空格</span></span><br><span class="line">    <span class="keyword">int</span> pos = s.find(<span class="string">"+"</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> sTmp = s.substr(<span class="number">0</span>, pos); <span class="comment">//分离出代表实部的字符串</span></span><br><span class="line">    c.real = atof(sTmp.c_str());</span><br><span class="line">    <span class="comment">//atof库函数能将const char*指针个的内容转换成float</span></span><br><span class="line">    sTmp = s.substr(pos+<span class="number">1</span>, s.length() - pos <span class="number">-2</span>);</span><br><span class="line">    <span class="comment">//分离出代表虚部的字符串</span></span><br><span class="line">    c.imag = atof(sTmp.c_str());</span><br><span class="line">    <span class="keyword">return</span> is;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Complex c;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; c &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c  &lt;&lt; <span class="string">","</span> &lt;&lt; n;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="自加-自减运算符的重载"><a href="#自加-自减运算符的重载" class="headerlink" title="自加/自减运算符的重载"></a>自加/自减运算符的重载</h1><p><strong>自加++/自减– 运算符有前置/后置之分</strong></p>
+<ul>
+<li>前置运算符作为一元函数重载<ul>
+<li>重载为成员函数<ul>
+<li>T operator++()</li>
+<li>T operator–()</li>
+</ul>
+</li>
+<li>重载为全局函数<ul>
+<li>T operator++(T)</li>
+<li>T operator–(T)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>++obj, obj.operator++(), operator++(obj)都调用上述函数</p>
+</li>
+<li><p>后置运算符作为二元元算符重载</p>
+<ul>
+<li>多写一个参数，具体无意义</li>
+<li>重载为成员函数:<ul>
+<li>T operator++(int);</li>
+<li>T operator–(int);</li>
+</ul>
+</li>
+<li>重载为全局函数:<ul>
+<li>T operator++(T, int);</li>
+<li>T operator–(T, int);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>obj++, obj.operator++(0),operator++(obj, 0)都将调用上述函数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDemo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CDemo(<span class="keyword">int</span> i = <span class="number">0</span>):n(i) &#123;&#125;</span><br><span class="line">	CDemo <span class="keyword">operator</span>++(); <span class="comment">//用于前置形式</span></span><br><span class="line">	CDemo <span class="keyword">operator</span>++(<span class="keyword">int</span>); <span class="comment">//用于后置形式</span></span><br><span class="line">	<span class="function"><span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123;<span class="keyword">return</span> n;&#125;</span><br><span class="line">	<span class="keyword">friend</span> CDemo <span class="keyword">operator</span>--(CDemo &amp;);</span><br><span class="line">	<span class="keyword">friend</span> CDemo <span class="keyword">operator</span>--(CDemo &amp; <span class="keyword">int</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CDemo CDemo::<span class="keyword">operator</span>++() &#123;  <span class="comment">//前置++</span></span><br><span class="line">	n++;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CDemo CDemo::<span class="keyword">operator</span>++(<span class="keyword">int</span> k) &#123;</span><br><span class="line">	<span class="function">CDemo <span class="title">tmp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;</span><br><span class="line">	n++;</span><br><span class="line">	<span class="keyword">return</span> tmpl  <span class="comment">//返回修改前的对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CDemo <span class="keyword">operator</span>--(CDemo &amp; d) &#123; <span class="comment">//前置--</span></span><br><span class="line">	d.n --;</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CDemo <span class="keyword">operator</span>--(CDemo &amp; d, <span class="keyword">int</span>) &#123; <span class="comment">//后置--</span></span><br><span class="line">	<span class="function">CDemo <span class="title">tmp</span><span class="params">(d)</span></span>;</span><br><span class="line">	d.n==;</span><br><span class="line">	<span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123;<span class="keyword">return</span> n;&#125;</span><br></pre></td></tr></table></figure>
+<p>int作为一个类型强制转换运算符被重载，<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Demo s;</span><br><span class="line">(<span class="keyword">int</span>) s; <span class="comment">//等效于s.int();</span></span><br></pre></td></tr></table></figure></p>
+<p>类型强制转换运算符重载时，</p>
+<ul>
+<li>不能写返回值类型</li>
+<li>实际上其返回值类型–类型强制转换运算符代表的类型</li>
+</ul>
+<h1 id="运算符重载的注意事项："><a href="#运算符重载的注意事项：" class="headerlink" title="运算符重载的注意事项："></a>运算符重载的注意事项：</h1><ol>
+<li>C++不允许定义新的运算符；</li>
+<li>重载后的运算符的含义应该符合日常习惯<ol>
+<li>complex_a + complex_b</li>
+<li>word_a &gt; word_b</li>
+<li>date_b = date_a + n</li>
+</ol>
+</li>
+<li>运算符重载不改变运算符的优先级</li>
+<li>以下运算符不能被重载：“.”，“.*”,”::”,”?:”, sizeof</li>
+<li>重载运算符(),[],-&gt;或者赋值运算符=时，重载函数必须声明为类的成员函数</li>
+</ol>
+
+      
+    </div>
+
+
+
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/COURSERA学习笔记/" rel="tag"><i class="fa fa-tag"></i> COURSERA学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/24/C++/week2/" rel="next" title="COURSERA <C++程序设计>——Week2">
+                <i class="fa fa-chevron-left"></i> COURSERA <C++程序设计>——Week2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/C++/week3/" rel="prev" title="COURSERA <C++程序设计>——Week3">
+                COURSERA <C++程序设计>——Week3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzU4Mi8xNDExNA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/qqkg0b8"
+                alt="Ematrix163" />
+            
+              <p class="site-author-name" itemprop="name">Ematrix163</p>
+              <p class="site-description motion-element" itemprop="description">Get busy living or get busy dying.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ematrix163" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/milkbar/activities" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符重载"><span class="nav-number">1.</span> <span class="nav-text">运算符重载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符重载为普通函数"><span class="nav-number">1.1.</span> <span class="nav-text">运算符重载为普通函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符重载为成员函数"><span class="nav-number">1.2.</span> <span class="nav-text">运算符重载为成员函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋值运算符’-’重载"><span class="nav-number">1.3.</span> <span class="nav-text">赋值运算符’=’重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重载赋值运算符的意义-浅复制和深复制"><span class="nav-number">1.4.</span> <span class="nav-text">重载赋值运算符的意义 - 浅复制和深复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅复制-浅拷贝"><span class="nav-number">1.4.1.</span> <span class="nav-text">浅复制/浅拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深复制-深拷贝"><span class="nav-number">1.4.2.</span> <span class="nav-text">深复制/深拷贝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对operator-返回值类型的讨论"><span class="nav-number">1.5.</span> <span class="nav-text">对operator=返回值类型的讨论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符重载为友元函数"><span class="nav-number">1.6.</span> <span class="nav-text">运算符重载为友元函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符重载-可变长整形数组"><span class="nav-number">1.7.</span> <span class="nav-text">运算符重载-可变长整形数组</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流插入运算符和流提取运算符的重载"><span class="nav-number">2.</span> <span class="nav-text">流插入运算符和流提取运算符的重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自加-自减运算符的重载"><span class="nav-number">3.</span> <span class="nav-text">自加/自减运算符的重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符重载的注意事项："><span class="nav-number">4.</span> <span class="nav-text">运算符重载的注意事项：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ematrix163</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">32.1k</span>
+  
+</div>
+
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共32.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

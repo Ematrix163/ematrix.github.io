@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Udacity学习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Udacity上的《前端进阶纳米学位》JavaScript高级教程部分的笔记。">
+<meta name="keywords" content="JavaScript,Udacity学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级——学习笔记">
+<meta property="og:url" content="ematrix163.xyz/2018/06/24/Web前端/Javascript高级/index.html">
+<meta property="og:site_name" content="Ematrix163">
+<meta property="og:description" content="Udacity上的《前端进阶纳米学位》JavaScript高级教程部分的笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.screenshot.net/2kve0be">
+<meta property="og:updated_time" content="2018-06-24T13:23:03.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级——学习笔记">
+<meta name="twitter:description" content="Udacity上的《前端进阶纳米学位》JavaScript高级教程部分的笔记。">
+<meta name="twitter:image" content="https://i.screenshot.net/2kve0be">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="ematrix163.xyz/2018/06/24/Web前端/Javascript高级/"/>
+
+
+
+
+
+  <title>JavaScript高级——学习笔记 | Ematrix163</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-121318790-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ematrix163</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="ematrix163.xyz/2018/06/24/Web前端/Javascript高级/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ematrix163">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.screenshot.net/qqkg0b8">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ematrix163">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript高级——学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T10:12:57+01:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,472
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Udacity上的《前端进阶纳米学位》JavaScript高级教程部分的笔记。<br><a id="more"></a></p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a><strong>闭包</strong></h1><p><strong>一个简单的闭包例子如下：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sagas = [];</span><br><span class="line"><span class="keyword">var</span> hero = aHero(); <span class="comment">/*aHero是一个随机产生值的函数*/</span></span><br><span class="line"><span class="keyword">var</span> newSage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foil = aFoil();   <span class="comment">/*aFoil是一个随机产生值的函数*/</span></span><br><span class="line">    sagas.push (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> deed = aDeed();   <span class="comment">/*aDeed是一个随机产生值的函数*/</span></span><br><span class="line">        log(hero+deed+foil);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br><span class="line">newSaga();</span><br><span class="line">sagas[<span class="number">0</span>]();  <span class="comment">/*此时调用saga[0]仍然有效，会保存当时newSage里面的局部变量*/</span></span><br><span class="line">sagas[<span class="number">0</span>]();  <span class="comment">/*类似于上面一句，hero与foil和上一句相同，deed不一样，因为deed是在调用sagas[0]时才生成的*/</span></span><br><span class="line">newSaga();   <span class="comment">/*重新调用newSaga以后，aFoil值开始变化*/</span></span><br><span class="line">sagas[<span class="number">0</span>]();  <span class="comment">/*Saga[0]与上面sagas[0]的不同之处还是deed*/</span></span><br><span class="line">sagas[<span class="number">1</span>]();  <span class="comment">/*foil是最第二次调用newSaga()时的环境内的变量值*/</span></span><br><span class="line">sagas[<span class="number">0</span>]();  <span class="comment">/*Saga[0]与上面sagas[0]的不同之处还是deed*/</span></span><br></pre></td></tr></table></figure></p>
+<p>总结的来说，就是<strong>保留对调用newSagas函数创建的saga函数的引用即使newSaga已经调用完毕。 </strong><br><strong>sagas[0]中存储的是第一次执行newSagas()时函数内部的变量值(foil)，sagas[1]存的是第二次的。</strong></p>
+<h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a><strong>this关键字</strong></h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">    log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ob2 = &#123;<span class="attr">method</span>:obj.fn&#125;</span><br><span class="line"></span><br><span class="line">obj.fn(<span class="number">3</span>,<span class="number">4</span>)  <span class="comment">/*this绑定的是调用时'.'左边的对象，即可以理解为this是/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">one, two</span>) </span>&#123;</span><br><span class="line">    log(<span class="keyword">this</span>,one, two);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> r=&#123;&#125;, g=&#123;&#125;, b=&#123;&#125;;</span><br><span class="line"></span><br><span class="line">r.method = fn;</span><br><span class="line">r.method(g,b);<span class="comment">/*log中的this指代red对象，即r会自动绑定道this上*/</span></span><br><span class="line">fn(g,b); <span class="comment">/*此时log中的this会绑定全局对象global*/</span></span><br><span class="line">fn.call(r,g,b); <span class="comment">/*r会自动绑定到this上*/</span></span><br><span class="line">r.method.call(y,g,b)  <span class="comment">/*call会改写this的访问规则，将y绑定到this上*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*回掉函数*/</span></span><br><span class="line"><span class="keyword">var</span> setImeout = <span class="function"><span class="keyword">function</span>(<span class="params">cb, ms</span>) </span>&#123;</span><br><span class="line">    waitSomehow(ms);</span><br><span class="line">    cb();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(fn, <span class="number">1000</span>); <span class="comment">/*this是global对象， one 和 two是undefined*/</span></span><br><span class="line">setTimeout(r.method, <span class="number">1000</span>); <span class="comment">/*this是global对象， one 和 two是undefined*/</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;r.method(g,b)&#125;, <span class="number">1000</span>); <span class="comment">/*this是r， one 和 two是g和b*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> r.method(g,b);  <span class="comment">/*？*/</span></span><br></pre></td></tr></table></figure>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gold = &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;</span><br><span class="line">log(gold.a);</span><br><span class="line">log(gold.z);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> blue = extend(&#123;&#125;, gold);</span><br><span class="line">blue.b = <span class="number">2</span>;</span><br><span class="line">log(blue.a);  <span class="comment">// 1</span></span><br><span class="line">log(blue.b);  <span class="comment">// 2</span></span><br><span class="line">log(blue.z);  <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rose = <span class="built_in">Object</span>.create(gold); <span class="comment">//object.create() 创建一个可向上查找的对象</span></span><br><span class="line">rose.b = <span class="number">2</span>;</span><br><span class="line">log(rose.a); <span class="comment">//1</span></span><br><span class="line">log(rose.b); <span class="comment">//2  这里是在rose中查找的b，没有向上查找到gold</span></span><br><span class="line">log(rose.z); <span class="comment">//undefined 因为rose和gold中都没有z</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gold.z = <span class="number">3</span>;</span><br><span class="line">log(blue.z); <span class="comment">//undefined  </span></span><br><span class="line">log(rose.z); <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//总结来说，就是原型链和继承的不同在于原型链会不停的向上查找，可以反应父节点的动态更新值；</span></span><br><span class="line"><span class="comment">//而继承(extend)是一次性复制的，父节点的动态更新不会影响到它</span></span><br></pre></td></tr></table></figure>
+<p>对象原型：javascript中的最高层，当向上查找时，上一层找不到，一直到最上会到这个对象原型层。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rose.toString() <span class="comment">//这个toString方法就在最高层对象原型中，因为rose中、gold中都没有定义这个方法</span></span><br></pre></td></tr></table></figure></p>
+<p>数组原型：位于对象原型下一层<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组原型</span></span><br><span class="line">&#123;   slice：&#123;f&#125;,</span><br><span class="line">    toString:&#123;f&#125;,</span><br><span class="line">    <span class="keyword">constructor</span>: Array,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//对象原型</span><br><span class="line">&#123;   toString: &#123;f&#125;,</span><br><span class="line">    hasOwnProperty: &#123;f&#125;,</span><br><span class="line">    <span class="keyword">constructor</span>: Object,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//当有一个数组对象调用toString方法时，会找到数组原型中的toString的方法，而不是对象原型</span><br></pre></td></tr></table></figure></p>
+<h1 id="对象修饰模式"><a href="#对象修饰模式" class="headerlink" title="对象修饰模式"></a><strong>对象修饰模式</strong></h1><p><strong>假如有很多小车对象，有loc属性，需要改变其loc属性值，+1，写法如下：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amy = &#123;<span class="attr">loc</span>:<span class="number">1</span>&#125;;</span><br><span class="line">amy.loc++;  <span class="comment">//使其位置+1</span></span><br><span class="line"><span class="keyword">var</span> ben = &#123;<span class="attr">loc</span>:<span class="number">9</span>&#125;;</span><br><span class="line">ben.loc++;  <span class="comment">//使其位置+1</span></span><br></pre></td></tr></table></figure></p>
+<p>当操作很复杂时，可以改进如下，定义一个move函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amy = carlike(&#123;&#125;, <span class="number">1</span>);</span><br><span class="line">move(amy); <span class="comment">//如果不用这个move函数的话就需要写amy.loc++</span></span><br><span class="line"><span class="keyword">var</span> amy = carlike(&#123;&#125;, <span class="number">9</span>);</span><br><span class="line">move(ben);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> move = <span class="function"><span class="keyword">function</span>(<span class="params">car</span>) </span>&#123;</span><br><span class="line">    car.loc++;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>修饰器函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> carlike = <span class="function"><span class="keyword">function</span>(<span class="params">obj, loc</span>) </span>&#123;</span><br><span class="line">    obj.loc = loc;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> move = <span class="function"><span class="keyword">function</span>(<span class="params">car</span>) </span>&#123;</span><br><span class="line">    car.loc++;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = carlike(&#123;&#125;,<span class="number">1</span>);</span><br><span class="line">move(amy);</span><br><span class="line"><span class="keyword">var</span> ben = carlike(&#123;&#125;,<span class="number">9</span>);</span><br><span class="line">move(ben);</span><br></pre></td></tr></table></figure></p>
+<p>将方法添加至构造函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> carlike = <span class="function"><span class="keyword">function</span>(<span class="params">obj, loc</span>) </span>&#123;</span><br><span class="line">    obj.loc = loc;</span><br><span class="line">    obj.move = move;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loc++;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = carlike(&#123;&#125;,<span class="number">1</span>);</span><br><span class="line">amy.move();</span><br><span class="line"><span class="keyword">var</span> ben =carlike(&#123;&#125;,<span class="number">9</span>);</span><br><span class="line">ben.move();</span><br></pre></td></tr></table></figure></p>
+<p>进一步整合：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//carlike是装饰器函数，类似于class的概念但是又有区别</span></span><br><span class="line"><span class="keyword">var</span> carlike = <span class="function"><span class="keyword">function</span>(<span class="params">obj, loc</span>) </span>&#123;</span><br><span class="line">    obj.loc = loc;</span><br><span class="line">    obj.move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.loc++;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = carlike(&#123;&#125;,<span class="number">1</span>); <span class="comment">//对象的实例化</span></span><br><span class="line">amy.move();</span><br><span class="line"><span class="keyword">var</span> ben = carlike(&#123;&#125;,<span class="number">1</span>);</span><br><span class="line">ben.move();</span><br></pre></td></tr></table></figure></p>
+<p>每次函数.move被创建时，都对调用函数carlike时创建的 独特闭包范围拥有访问权限，因此不再需要this关键字，将this.loc++改为obj.loc++</p>
+<h1 id="函数类"><a href="#函数类" class="headerlink" title="函数类"></a>函数类</h1><p>将上面的代码改成类：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;<span class="attr">loc</span>: loc&#125;;</span><br><span class="line">    obj.move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        obj.loc++;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = Car(<span class="number">1</span>);</span><br><span class="line">amy.move();</span><br><span class="line"><span class="keyword">var</span> ben = Car(<span class="number">9</span>);</span><br><span class="line">ben.move();</span><br></pre></td></tr></table></figure></p>
+<p>但是，每次实例化一个对象的时候，都会创建一个move函数。最好能只创建一个move函数让所有的Car对象共享，以节省内存。但是如果直接移出来的话，move就无法访问闭包作用域中的变量obj，变量obj是存储Car实例的地方，因次还需要用this参数，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;<span class="attr">loc</span>: loc&#125;;</span><br><span class="line">    obj.move() = move;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loc++;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = Car(<span class="number">1</span>);</span><br><span class="line">amy.move();</span><br><span class="line"><span class="keyword">var</span> ben = Car(<span class="number">9</span>);</span><br><span class="line">ben.move();</span><br></pre></td></tr></table></figure></p>
+<p>但是这样需要在两个地方命名，很不方便。因为当有很多很多函数时，这样很复杂，可以使用函数共享模式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;<span class="attr">loc</span>: loc&#125;;</span><br><span class="line">    extend(obj, methods);</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> methods = &#123;</span><br><span class="line">    move: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.loc++;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>但是methods是在类Car外面的，看代码的时候很有可能不知道这个methods到底是针对哪个类的，而且这个methods变成了一个全局变量。因此改进如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;<span class="attr">loc</span>: loc&#125;;</span><br><span class="line">    extend(obj, Car.methods);</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Car.methods = &#123;</span><br><span class="line">    move: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.loc++;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h1 id="原型类"><a href="#原型类" class="headerlink" title="原型类"></a>原型类</h1><p>一个一个用extend来复制方法会降低性能。为了提高性能，不使用extend来复制所有方法，而使用原型对象来存储所有的方法，并将实例委托到这个共享原型对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="built_in">Object</span>.create(Car.methods); <span class="comment">//Car.methods是Car的上一层的原型对象</span></span><br><span class="line">    obj.loc = loc;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Car.methods = &#123;</span><br><span class="line">    move : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.loc++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>因为这种构造函数容器的方法很常见,于是就有了官方的方法,用原型prototype:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="built_in">Object</span>.create(Car.prototype);</span><br><span class="line">    obj.loc = loc;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Car.prototype.move() = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loc ++;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这两种方法对内存模式其实没有太大影响. Car会向上查找完全是因为Object.create(Car.prototype)这个语句,将prototype和car之间建立了联系. 这个prototype并没有任何特殊的附加属性, 如加入以下语句,其实效果是一样的 :<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Example = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.create(Car.prototype);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> obj = <span class="built_in">Object</span>.create(Car.prototype);</span><br><span class="line">	obj.loc = loc;</span><br><span class="line">	<span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Car.prototype.move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.loc++;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> amy = Car(<span class="number">1</span>);</span><br><span class="line">amy.move();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Car.prototype.constructor);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//ƒ (loc)&#123;</span></span><br><span class="line"><span class="comment">//	var obj = Object.create(Car.prototype);</span></span><br><span class="line"><span class="comment">//	obj.loc = loc;</span></span><br><span class="line"><span class="comment">//	return obj;</span></span><br><span class="line"><span class="comment">//&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(amy.constructor);</span><br><span class="line"><span class="comment">//答案和之前一样</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(amy <span class="keyword">instanceof</span> Car);</span><br><span class="line"><span class="comment">//instanceof 判断右侧的 .prototype 是否在左侧的原型链中</span></span><br><span class="line"><span class="comment">//此处Car.prototype可以在amy的原型链中找到</span></span><br><span class="line"><span class="comment">//True</span></span><br></pre></td></tr></table></figure>
+<p>另一个例子:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">legs</span>: <span class="number">4</span>, <span class="attr">bark</span>: alert&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> fido = Dog();</span><br><span class="line"><span class="built_in">console</span>.log(fido <span class="keyword">instanceof</span> Dog);</span><br><span class="line"><span class="comment">//False</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h1><p><img src="https://i.screenshot.net/2kve0be" alt="Image"><br>红色标注的两句话其实是每个’类‘代码都用的。使用new就是相当于自带了这两句话，这是一个语法糖。</p>
+<p>因次，两种关于类的写法：</p>
+<ol>
+<li>分开</li>
+</ol>
+<p>构造函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loc = loc;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Car.prototype.move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loc++;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>实例化<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amy = <span class="keyword">new</span> Car(<span class="number">1</span>);</span><br><span class="line">amy.move();</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>合并(但是这种方法会浪费内存)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    obj = &#123;<span class="attr">loc</span>: loc&#125;;</span><br><span class="line">    obj.move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        obj.loc++;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = Car(<span class="number">1</span>); <span class="comment">//注意这边没有new这个关键字</span></span><br><span class="line">amy.move();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="超类和子类"><a href="#超类和子类" class="headerlink" title="超类和子类"></a>超类和子类</h1><p>其实就是OOP里面的继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;<span class="attr">loc</span>: loc&#125;;</span><br><span class="line">    obj.move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        obj.loc++;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Van = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = Car(loc);</span><br><span class="line">    obj.grab = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*...*/</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Cop = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = Car(loc);</span><br><span class="line">    obj.call = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = Van(<span class="number">1</span>);</span><br><span class="line">amy.move();</span><br><span class="line"><span class="keyword">var</span> ben = Van(<span class="number">9</span>);</span><br><span class="line">ben.move();</span><br><span class="line"><span class="keyword">var</span> cal = Cop(<span class="number">2</span>);</span><br><span class="line">cal.move();</span><br><span class="line">cal.call();</span><br></pre></td></tr></table></figure></p>
+<h1 id="伪类子类"><a href="#伪类子类" class="headerlink" title="伪类子类"></a>伪类子类</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loc = loc;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Car.prototype.move = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loc++;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Van = <span class="function"><span class="keyword">function</span>(<span class="params">loc</span>)</span>&#123;</span><br><span class="line">    Car.call(<span class="keyword">this</span>.loc);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Van.prototype.__proto__ = Car.prototype; 这种写法是不允许的</span></span><br><span class="line"><span class="comment">//Van.prototype = Car.prototype; 这种写法看似可行。但是JS里面的=不是复制，所以当给Van添加方法时，Car也会收到影响。</span></span><br><span class="line">Van.prototype = <span class="built_in">Object</span>.create(Car.prototype); <span class="comment">//正确写法</span></span><br><span class="line"><span class="comment">//Van.prototype = new Car(); 这种写法不是很好，因为Car()是需要传入参数的，但是这边是没有参数传入的</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Van.prototype = <span class="built_in">Object</span>.create(Car.prototype);</span><br><span class="line">Van.prototype.constructor = Van;  <span class="comment">//没有这句话的话，下一个amy.constructor会指向Car对象。</span></span><br><span class="line">Van.prototype.grab = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*...*/</span>&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> zed = <span class="keyword">new</span> Car(<span class="number">3</span>);</span><br><span class="line">zed.move();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amy = <span class="keyword">new</span> Van(<span class="number">9</span>);</span><br><span class="line">amy.move();</span><br><span class="line">amy.grab();</span><br><span class="line"><span class="built_in">console</span>.log(amy.constructor);</span><br></pre></td></tr></table></figure>
+<p>.call()<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> product = <span class="function"><span class="keyword">function</span>(<span class="params">a,b </span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a * b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> product(x, <span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">double(<span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> product = <span class="function"><span class="keyword">function</span>(<span class="params">num, b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num * b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> product(<span class="keyword">this</span>, <span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line">double.call(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> product = <span class="function"><span class="keyword">function</span>(<span class="params">b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span> * b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> product.call(<span class="keyword">this</span>, <span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line">double.call(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+
+
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/Udacity学习笔记/" rel="tag"><i class="fa fa-tag"></i> Udacity学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/24/Web前端/ES6/" rel="next" title="ES6语法——学习笔记">
+                <i class="fa fa-chevron-left"></i> ES6语法——学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/C++/week2/" rel="prev" title="COURSERA <C++程序设计>——Week2">
+                COURSERA <C++程序设计>——Week2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzU4Mi8xNDExNA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/qqkg0b8"
+                alt="Ematrix163" />
+            
+              <p class="site-author-name" itemprop="name">Ematrix163</p>
+              <p class="site-description motion-element" itemprop="description">Get busy living or get busy dying.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ematrix163" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/milkbar/activities" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this关键字"><span class="nav-number">2.</span> <span class="nav-text">this关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型链"><span class="nav-number">3.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象修饰模式"><span class="nav-number">4.</span> <span class="nav-text">对象修饰模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数类"><span class="nav-number">5.</span> <span class="nav-text">函数类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型类"><span class="nav-number">6.</span> <span class="nav-text">原型类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#伪类"><span class="nav-number">7.</span> <span class="nav-text">伪类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#超类和子类"><span class="nav-number">8.</span> <span class="nav-text">超类和子类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#伪类子类"><span class="nav-number">9.</span> <span class="nav-text">伪类子类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ematrix163</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">32.1k</span>
+  
+</div>
+
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共32.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

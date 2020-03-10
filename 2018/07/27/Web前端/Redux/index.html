@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Redux 简介Redux是什么 Redux 专注于状态管理，和React解耦  单一状态，单项数据流  核心概念： store, state, action, reducer   主要功能 有一个状态管理器(store)， 所有数据在记录在这（state）  需要改变的时候，使用(dispatch) 执行 (action)  处理变化的人(reducer)拿到state和action，生成新的s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ematrix163">
+<meta property="og:url" content="ematrix163.xyz/2018/07/27/Web前端/Redux/index.html">
+<meta property="og:site_name" content="Ematrix163">
+<meta property="og:description" content="Redux 简介Redux是什么 Redux 专注于状态管理，和React解耦  单一状态，单项数据流  核心概念： store, state, action, reducer   主要功能 有一个状态管理器(store)， 所有数据在记录在这（state）  需要改变的时候，使用(dispatch) 执行 (action)  处理变化的人(reducer)拿到state和action，生成新的s">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-29T00:01:30.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ematrix163">
+<meta name="twitter:description" content="Redux 简介Redux是什么 Redux 专注于状态管理，和React解耦  单一状态，单项数据流  核心概念： store, state, action, reducer   主要功能 有一个状态管理器(store)， 所有数据在记录在这（state）  需要改变的时候，使用(dispatch) 执行 (action)  处理变化的人(reducer)拿到state和action，生成新的s">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="ematrix163.xyz/2018/07/27/Web前端/Redux/"/>
+
+
+
+
+
+  <title> | Ematrix163</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-121318790-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ematrix163</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="ematrix163.xyz/2018/07/27/Web前端/Redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ematrix163">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.screenshot.net/qqkg0b8">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ematrix163">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T11:06:39+01:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,445
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Redux-简介"><a href="#Redux-简介" class="headerlink" title="Redux 简介"></a>Redux 简介</h1><h2 id="Redux是什么"><a href="#Redux是什么" class="headerlink" title="Redux是什么"></a>Redux是什么</h2><ul>
+<li><p>Redux 专注于状态管理，和React解耦</p>
+</li>
+<li><p>单一状态，单项数据流</p>
+</li>
+<li><p>核心概念： store, state, action, reducer</p>
+</li>
+</ul>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ul>
+<li><p>有一个状态管理器(store)， 所有数据在记录在这（state）</p>
+</li>
+<li><p>需要改变的时候，使用(dispatch) 执行 (action)</p>
+</li>
+<li><p>处理变化的人(reducer)拿到state和action，生成新的state</p>
+</li>
+</ul>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
+<li>通过reducer新建store，随时通过store.getState获取状态</li>
+<li>需要状态变更，store.dispatch(action)来修改状态</li>
+<li>Reducer函数接受state和action，返回新的state，可以用store.subscribe监听每次修改</li>
+</ul>
+<h1 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p> <code>npm install redux --save</code></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Reducer: 根据老的state和action生成新的state</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params">state=<span class="number">0</span>, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'加'</span>:</span><br><span class="line">            <span class="keyword">return</span> state + <span class="number">1</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">'减'</span>:</span><br><span class="line">            <span class="keyword">return</span> state - <span class="number">1</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">        	<span class="keyword">return</span> <span class="number">10</span></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建store</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(counter)</span><br><span class="line"><span class="keyword">const</span> init = store.getState()</span><br><span class="line"><span class="built_in">console</span>.log(init) <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 派发事件，传递action</span></span><br><span class="line">store.dispatch(&#123;<span class="attr">type</span>:<span class="string">'加'</span>&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(store.getState()) <span class="comment">// 11</span></span><br><span class="line"></span><br><span class="line">store.dispatch(&#123;<span class="attr">type</span>:<span class="string">'减'</span>&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(store.getState()) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>可以通过订阅<code>subscribe</code>减少冗余代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">listener</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> current = store.getState()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'现在$&#123;current&#125;'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">store.subscribe(linstener)</span><br></pre></td></tr></table></figure>
+<p>index.redux.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ADD_GUN = <span class="string">'加'</span></span><br><span class="line"><span class="keyword">const</span> REMOVE_GUN = <span class="string">'减'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Reducer</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params">state=<span class="number">0</span>, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'加'</span>:</span><br><span class="line">            <span class="keyword">return</span> state + <span class="number">1</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">'减'</span>:</span><br><span class="line">            <span class="keyword">return</span> state - <span class="number">1</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//action creator</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">addGUN</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">type</span>: ADD_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">removeGUN</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">type</span>: REMOVE_GUN&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = createStore(counter)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    ReactDom.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span> /&gt;</span>, document.getElementById('root'))</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml">render();</span></span><br><span class="line"><span class="xml">store.subscribe(render)</span></span><br></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; addGUN &#125; <span class="keyword">from</span> <span class="string">'./index.redux'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    contructor(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">const</span> store = <span class="keyword">this</span>.props.store</span><br><span class="line">        <span class="keyword">const</span> num = store.getState()</span><br><span class="line">        <span class="keyword">return</span> ( </span><br><span class="line">            &lt;div&gt;</span><br><span class="line">        		&lt;h1&gt;现在$&#123;num&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">            	&lt;button onClick=&#123;() =&gt; store.dispatch(addGUN())&#125;&gt;&lt;/</span>button&gt;</span><br><span class="line">		    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        ) </span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default App</span></span><br></pre></td></tr></table></figure>
+<p>为了使组件更加独立，改写如下：</p>
+<p>index.redux.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ADD_GUN = <span class="string">'加'</span></span><br><span class="line"><span class="keyword">const</span> REMOVE_GUN = <span class="string">'减'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Reducer</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params">state=<span class="number">0</span>, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'加'</span>:</span><br><span class="line">            <span class="keyword">return</span> state + <span class="number">1</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">'减'</span>:</span><br><span class="line">            <span class="keyword">return</span> state - <span class="number">1</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//action creator</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">addGUN</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">type</span>: ADD_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">removeGUN</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">type</span>: REMOVE_GUN&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; counter,addGun &#125; <span class="keyword">from</span> <span class="string">'./index.redux'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = createStore(counter)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    ReactDom.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span> <span class="attr">addGun</span>=<span class="string">&#123;addGun&#125;</span> /&gt;</span>, document.getElementById('root'))</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml">render();</span></span><br><span class="line"><span class="xml">store.subscribe(render)</span></span><br></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//import &#123; addGUN &#125; from './index.redux'</span></span><br><span class="line"><span class="comment">//这个里面不在需要导入addGun</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    contructor(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">const</span> store = <span class="keyword">this</span>.props.store</span><br><span class="line">        <span class="keyword">const</span> num = store.getState()</span><br><span class="line">        <span class="keyword">const</span> addGun = <span class="keyword">this</span>.props.addGun</span><br><span class="line">        <span class="keyword">return</span> ( </span><br><span class="line">            &lt;div&gt;</span><br><span class="line">        		&lt;h1&gt;现在$&#123;num&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">            	&lt;button onClick=&#123;() =&gt; store.dispatch(addGun())&#125;&gt;&lt;/</span>button&gt;</span><br><span class="line">		    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        ) </span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a>更进一步</h2><p>处理异步，调试工具、更优雅的和react结合</p>
+<ul>
+<li>Redux处理异步，需要redux-thunk插件</li>
+<li><code>npm install redux-devtoold-extension</code>并且开启</li>
+<li>使用react-redux优雅的链接react和redux</li>
+</ul>
+<ol>
+<li><p>处理异步</p>
+<p>Redux默认只处理同步，异步任务需要<code>react-thunk</code>中间件</p>
+<ul>
+<li><code>npm install redux-thunk --save</code></li>
+<li>使用<code>applyMiddleware</code>开启<code>thunk</code>中间件</li>
+<li><code>action</code>可以返回函数，使用<code>dispatch</code>提交<code>action</code></li>
+</ul>
+</li>
+</ol>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;</span><br><span class="line">import ReactDom from &apos;react-dom&apos;</span><br><span class="line">import &#123; createStore, applyMiddleware &#125; from &apos;redux&apos;</span><br><span class="line">import App from &apos;./App&apos;</span><br><span class="line">import &#123; createStore &#125; from &apos;redux&apos;</span><br><span class="line">import thunk from &apos;redux-thunk&apos;</span><br><span class="line"></span><br><span class="line">const store = createStore(counter, applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line">function render()&#123;</span><br><span class="line">   ReactDom.render(&lt;App store=&#123;store&#125; /&gt;, document.getElementById(&apos;root&apos;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render();</span><br><span class="line">store.subscribe(render)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">const ADD_GUN = &apos;加&apos;</span><br><span class="line">const REMOVE_GUN = &apos;减&apos;</span><br><span class="line"></span><br><span class="line">//Reducer</span><br><span class="line">export function counter(state=0, action) &#123;</span><br><span class="line">    switch(action.type) &#123;</span><br><span class="line">        case &apos;加&apos;:</span><br><span class="line">            return state + 1</span><br><span class="line">        case &apos;减&apos;:</span><br><span class="line">            return state - 1</span><br><span class="line">        default:</span><br><span class="line">            return 10</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//action creator</span><br><span class="line">export function addGUN() &#123;</span><br><span class="line">    return &#123;type: ADD_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function removeGUN() &#123;</span><br><span class="line">    return &#123;type: REMOVE_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//注意这里返回值是一个函数不是一个对象</span><br><span class="line">export function addGunAsync()&#123;</span><br><span class="line">    return dispatch =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            dispatch(addGun())</span><br><span class="line">        &#125;, 2000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;</span><br><span class="line"></span><br><span class="line">import &#123; addGUN &#125; from &apos;./index.redux&apos;</span><br><span class="line"></span><br><span class="line">class App extends React.Component&#123;</span><br><span class="line">    contructor(props)&#123;</span><br><span class="line">        super(props)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        const store = this.props.store</span><br><span class="line">        const num = store.getState()</span><br><span class="line">        return ( </span><br><span class="line">            &lt;div&gt;</span><br><span class="line">        		&lt;h1&gt;现在$&#123;num&#125;&lt;/h1&gt;</span><br><span class="line">            	&lt;button onClick=&#123;() =&gt; store.dispatch(addGUN())&#125;&gt;&lt;/button&gt;</span><br><span class="line">                 &lt;button onClick=&#123;() =&gt; store.dispatch(addGUN())&#125;&gt;&lt;/button&gt;</span><br><span class="line">		    &lt;/div&gt;</span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用compose介乎<code>thunk</code>和<code>window.devToolsExtension</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const reduxDevtools = windows.devToolsExtension</span><br><span class="line">const store = createStore(counter, compose(</span><br><span class="line">	appliMiddleware(thunk),</span><br><span class="line">    windows.devToolsExtension? windows.devToolsExtension(): f=&gt;f</span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>使用react-redux优雅的链接react和redux</p>
+<ul>
+<li>Provider组件在应用最外层，传入store即可，只用一次</li>
+<li>Connect负责从外部获取组件需要的参数</li>
+<li>Connect可以用装饰器的方式来写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Provider &#125; from &apos;react-redux&apos;</span><br><span class="line">ReactDom.render(</span><br><span class="line">	(&lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">        &lt;App/&gt;</span><br><span class="line">    &lt;/Provider&gt;),</span><br><span class="line">    document.getElementById(&apos;root&apos;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;</span><br><span class="line">import &#123; connect &#125; from &apos;react-redux&apos;</span><br><span class="line">import &#123; addGun, removeGun, addGunAsync &#125; from &apos;index&apos;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line"> render() &#123;     </span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;现在有机枪&#123;this.props.num&#125;&lt;/h1&gt;</span><br><span class="line">            &lt;button onClick=&#123;this.props.addGun&#125;&gt;申请武器&lt;/button&gt;</span><br><span class="line">            &lt;button onClick=&#123;this.props.removeGun&#125;&gt;上交武器&lt;/button&gt;</span><br><span class="line">            &lt;button onClick=&#123;this.props.addGunAsync&#125;&gt;拖两天再给		 &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">const mapStatetoProps = (state)&#123;</span><br><span class="line">    return &#123; num:state &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const actionCreators = &#123; addGun, removeGun, addGunAsync &#125;</span><br><span class="line">App = connect(mapStatetoProps, actionCreatores)(App) //高阶组件</span><br><span class="line"></span><br><span class="line">export default App</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用装饰器优化connect代码 </p>
+<ul>
+<li><code>npm run eject</code>弹出个性化配置</li>
+<li><code>npm install babel-plugin-transform-decorators-legacy--save -dev</code>插件</li>
+<li><code>package.json</code>里babel加上plugins配置</li>
+</ul>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;</span><br><span class="line">import &#123; connect &#125; from &apos;react-redux&apos;</span><br><span class="line">import &#123; addGun, removeGun, addGunAsync &#125; from &apos;index&apos;</span><br><span class="line"></span><br><span class="line">@connect(</span><br><span class="line">    //你要什么属性放到props里</span><br><span class="line">	state=&gt;(&#123;num:state&#125;),</span><br><span class="line">    //你要什么方法放到props里，自动dispatch</span><br><span class="line">    &#123; addGun, removeGun, addGunAsync &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">   render() &#123;     </span><br><span class="line">       return (</span><br><span class="line">           &lt;div&gt;</span><br><span class="line">               &lt;h1&gt;现在有机枪&#123;this.props.num&#125;&lt;/h1&gt;</span><br><span class="line">               &lt;button onClick=&#123;this.props.addGun&#125;&gt;申请武器&lt;/button&gt;</span><br><span class="line">               &lt;button onClick=&#123;this.props.removeGun&#125;&gt;上交武器&lt;/button&gt;</span><br><span class="line">               &lt;button onClick=&#123;this.props.addGunAsync&#125;&gt;拖两天再给&lt;/button&gt;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">       )</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const mapStatetoProps = (state)&#123;</span><br><span class="line">   return &#123; num:state &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const actionCreators = &#123; addGun, removeGun, addGunAsync &#125;</span><br><span class="line">App = connect(mapStatetoProps, actionCreatores)(App) //高阶组件</span><br><span class="line"></span><br><span class="line">export default App</span><br></pre></td></tr></table></figure>
+<h2 id="React-router4基础知识"><a href="#React-router4基础知识" class="headerlink" title="React-router4基础知识"></a><code>React-router4</code>基础知识</h2>
+      
+    </div>
+
+
+
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/23/JAVA/JAVA内部类/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/28/后端开发/DjangoRest完成搜索过滤排序/" rel="prev" title="Django Rest framwork实现搜索、过滤、排序（详细）">
+                Django Rest framwork实现搜索、过滤、排序（详细） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzU4Mi8xNDExNA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/qqkg0b8"
+                alt="Ematrix163" />
+            
+              <p class="site-author-name" itemprop="name">Ematrix163</p>
+              <p class="site-description motion-element" itemprop="description">Get busy living or get busy dying.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ematrix163" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/milkbar/activities" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redux-简介"><span class="nav-number">1.</span> <span class="nav-text">Redux 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux是什么"><span class="nav-number">1.1.</span> <span class="nav-text">Redux是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要功能"><span class="nav-number">1.2.</span> <span class="nav-text">主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">1.3.</span> <span class="nav-text">过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体代码"><span class="nav-number">2.</span> <span class="nav-text">具体代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更进一步"><span class="nav-number">2.3.</span> <span class="nav-text">更进一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-router4基础知识"><span class="nav-number">2.4.</span> <span class="nav-text">React-router4基础知识</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ematrix163</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">26.5k</span>
+  
+</div>
+
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共26.5k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
